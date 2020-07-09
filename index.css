@@ -1,0 +1,236 @@
+:root {
+  --lite-blue-h: #add8e6; /*lite blue hex value*/
+  --lite-blue-o: rgba(173, 216, 230, .6); /*lite blue opaque*/
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  /* full window */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* .background {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: url('./livingroom.png') no-repeat center center;
+  background-size: 100% 100%;
+  filter: brightness(80%);
+} */
+
+.app {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* margin-left: 450px; */
+  /* margin-top: 155px; */
+
+  /* transform: scale(.75); */
+  background: #444;
+}
+
+.container {
+  position: relative;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.globe {
+  position: relative;
+  z-index: 1;
+  width: 250px;
+  height: 250px;
+
+  margin-bottom: -10px;
+}
+
+.globe img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  filter: brightness(180%); /*brighten picture for a more computer image feel*/
+}
+
+.globe::after {
+  opacity: .7;
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 12.5px;
+  z-index: -1;
+  width: calc(100% - 30px);
+  height: calc(100% - 20px);
+
+  border-radius: 50%;
+
+  box-shadow: 0 5px 10px white; /*glow under globe*/
+}
+
+.ring-vis, .ring-inv {
+   /* #add8e6 <=> light blue <=> (173, 216, 230) */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  border: 10px solid var(--lite-blue-h);
+  border-radius: 50%;
+
+  /* 3d */
+  transform: rotateY(45deg) skewX(45deg);
+}
+
+.ring-vis {
+  z-index: 2;
+  border-right: none;
+  border-top: none;
+}
+
+.ring-inv {
+  z-index: -1;
+  filter: brightness(80%);
+
+  box-shadow: inset -50px 0 70px rgba(255,255,255,.2);
+}
+
+.ring-sm, .ring-bg {
+  position: absolute;
+
+  border: 1px solid var(--lite-blue-h);
+  border-radius: 50%;
+  border-right: none;
+  border-top: none;
+
+  /* 3d */
+  transform: rotateY(45deg) skewX(45deg);
+}
+
+.ring-sm {
+  top: 17.5px;
+  left: 17.5px;
+  width: calc(100% - 35px);
+  height: calc(100% - 35px); 
+}
+
+.ring-bg {
+  top: -7.5px;
+  left: -7.5px;
+  width: calc(100% + 15px);
+  height: calc(100% + 15px);
+}
+
+.light-beam {
+  width: 55px; /*width of small circle light ray at widest intersection*/
+  height: 200px;
+
+  /* bright core beam */
+  background: linear-gradient(to right, transparent, white, transparent);
+
+  margin-bottom: -35px;
+}
+
+.light-ball {
+  position: absolute;
+  z-index: 2;
+  bottom: 40px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 10px 0 20px white,
+              -10px 0 20px white,
+              0 10px 20px white,
+              0 -10px 20px white,
+              inset 0 0 50px white;
+}
+
+.circles {
+  perspective: 1000px;
+}
+
+.bg-circle {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  border: 5px solid white;
+
+  box-shadow:  0 0 50px rgba(255,255,255,.8);
+
+  transform: rotateX(60deg);
+}
+
+.sm-circle {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  border: 3px solid white;
+
+  /* background: white; */
+  box-shadow: inset 0 -1px 3px green, /*slight shadow inside the small circle*/
+                    0 20px 30px white,
+              inset 0 -10px 30px white;
+  margin-top: -5px;
+}
+
+.light {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.outer-light {
+  /* border-bottom: 150px solid rgba(255,255,255,.4); */
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  height: 0;
+  width: 135px;
+
+  margin-bottom: 22px;
+
+  transform: rotate(180deg);
+}
+
+.outer-light::before {
+  opacity: .5;
+  content: '';
+  position: absolute;
+  /* bottom: -15px; */
+  width: 100%;
+  height: 100%;
+
+  margin-bottom: 35px;
+
+  /* background: linear-gradient(-50deg, transparent, rgba(255,255,255,.1), rgba(255,255,255,.1), transparent); */
+}
+
+.outer-light::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  width: 110%;
+  height: 110%;
+
+  margin-bottom: 35px;
+
+  /* background: linear-gradient(to top, transparent, rgba(255,255,255,.4), rgba(255,255,255,.4), transparent); */
+}
+
